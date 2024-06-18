@@ -11,9 +11,10 @@ autocmd("VimEnter", {
   group = augroup("lazynvim", "update_plugins", { clear = true }),
   callback = function()
     -- require("lazy").update()
-    if require("lazy.status").has_updates then
-      require("lazy").update({ show = false })
+    if require("lazy.status").has_updates() then
+      require("lazy").update({ show = true })
     end
+    -- require("lazy").clean()
   end,
 })
 
@@ -21,7 +22,7 @@ autocmd("VimEnter", {
   group = augroup("olivercwy", "auto_cd", { clear = true }),
   callback = function()
     local dir = LazyVim.root()
-    _G.ocwy_cwd = vim.uv.cwd()
+    ocwy.cwd = vim.uv.cwd()
     -- -- buffer is a directory
     -- local directory = vim.fn.isdirectory(data.file) == 1
     --
